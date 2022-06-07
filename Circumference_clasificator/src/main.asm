@@ -1,11 +1,6 @@
-TITLE Clasificador de círcunferencias.
+TITLE Clasificador de cÃ­rcunferencias.
 
 ; Este programa clasifica circunferencias en base a sus posiciones relativas.
-
-; Javier de Jesús Silva Marín 
-; Juan José Navarro 
-; Santiago Salazar Ramírez 
-; Michael Moreno Valoyes 
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,27 +9,18 @@ TITLE Clasificador de círcunferencias.
 
 INCLUDE Irvine32.inc
 
-EXTERN MainClassifier@0:PROC                 ; Se hereda el procedimiento MainClassifier del módulo classify_main.
+EXTERN MainClassifier@0:PROC                 ; Se hereda el procedimiento MainClassifier del mÃ³dulo classify_main.
 
 ; DEFINIR CONSTANTES
 
-NUM_OF_OPTIONS = 6                           ; Constante que determina cuantas veces se dejará al usuario ingresar un input.
+NUM_OF_OPTIONS = 6                           ; Constante que determina cuantas veces se dejarÃ¡ al usuario ingresar un input.
 
 ;-------------------
 
-MainClassifier EQU <MainClassifier@0>        ; Renombra MainClassifier@0 a MainClassifier para más comodidad.
+MainClassifier EQU <MainClassifier@0>        ; Renombra MainClassifier@0 a MainClassifier para mÃ¡s comodidad.
 
 .data                                        ; Indicaciones para el usuario.
 
-Sld1 BYTE "Universidad Nacional de Colombia sede Medellin", 0Ah, 0Dh, 0
-Sld2 BYTE "3007863 - Arquitectura del Computador", 0Ah, 0Dh, 0
-Sld3 BYTE "Clasificador de posiciones relativas entre circunferencias", 0Ah, 0Dh, 0
-Sld4 BYTE "Desarrollado por", 0Ah, 0Dh, 0
-Sld5 BYTE "Javier de Jesus Silva Marin", 0Ah, 0Dh, 0
-Sld6 BYTE "Juan Jose Navarro Saldarriaga", 0Ah, 0Dh, 0
-Sld7 BYTE "Santiago Salazar Ramirez", 0Ah, 0Dh, 0
-Sld8 BYTE "Michael Moreno Valoyes", 0Ah, 0Dh, 0
-Sld9 BYTE "2021-1S", 0Ah, 0Dh, 0
 Sld10 BYTE "Bienvenido", 0Ah, 0Dh, 0
 Sld11 BYTE "Este programa clasifica las posiciones relativas entre dos circunferencias.", 0Ah, 0Dh, 0
 Sld12 BYTE "Primero recibe seis datos correspondientes a los componentes de ambas circunferencias. (X1, Y1, R1, X2, Y2, R2) ", 0Ah, 0Dh, 0
@@ -52,9 +38,9 @@ MSGX2 BYTE "Ingrese el X2:", 0Ah, 0Dh, 0
 MSGY2 BYTE "Ingrese el Y2:", 0Ah, 0Dh, 0
 MSGR2 BYTE "Ingrese el R2:", 0Ah, 0Dh, 0
 
-STRING_OFFSET = SIZEOF MSGX1                  ; Constante que contiene el tamaño de los mensajes, todos los mensaje tienen el mismo tamaño.
+STRING_OFFSET = SIZEOF MSGX1                  ; Constante que contiene el tamaÃ±o de los mensajes, todos los mensaje tienen el mismo tamaÃ±o.
 
-.data?                                        ; Variables que se utilizan en los cálculos.
+.data?                                        ; Variables que se utilizan en los cÃ¡lculos.
 rx_1 REAL4 ?                                  
 ry_1 REAL4 ?
 r_1  REAL4 ?
@@ -65,72 +51,13 @@ r_2  REAL4 ?
 
 reset DWORD ?
 
-PUBLIC rx_1, ry_1, rx_2, ry_2, r_1, r_2       ; Se hacen públicas las variables para que puedan ser heredadas por otros módulos.
+PUBLIC rx_1, ry_1, rx_2, ry_2, r_1, r_2       ; Se hacen pÃºblicas las variables para que puedan ser heredadas por otros mÃ³dulos.
 
 .code
 main PROC
 
      mov eax, green
      call SetTextColor
-
-     mov dl, 36
-     mov dh, 8
-     call GotoXy
-     mov edx, OFFSET Sld1
-     call WriteString
-
-
-     mov dl, 40
-     mov dh, 9
-     call GotoXy
-     mov edx, OFFSET Sld2
-     call WriteString
-
-     mov dl, 30
-     mov dh, 10
-     call GotoXy
-     mov edx, OFFSET Sld3
-     call WriteString
-
-     call Crlf
-     call Crlf
-
-     mov dl, 50
-     mov dh, 11
-     call GotoXy
-     mov edx, OFFSET Sld4
-     call WriteString
-
-     mov dl, 44
-     mov dh, 12
-     call GotoXy
-     mov edx, OFFSET Sld5
-     call WriteString
-
-     mov dl, 43
-     mov dh, 13
-     call GotoXy
-     mov edx, OFFSET Sld6
-     call WriteString
-
-     mov dl, 46
-     mov dh, 14
-     call GotoXy
-     mov edx, OFFSET Sld7
-     call WriteString
-
-     mov dl, 47
-     mov dh, 15
-     call GotoXy
-     mov edx, OFFSET Sld8
-     call WriteString
-
-     mov dl, 55
-     mov dh, 16
-     call GotoXy
-     mov edx, OFFSET Sld9
-     call WriteString
-
 
      mov dl, 45
      mov dh, 17
@@ -185,9 +112,9 @@ main PROC
           call Clrscr
 
           mov ecx, NUM_OF_OPTIONS                  ; Se mueve NUM_OF_OPTIONS a ecx para el loop en el que se piden datos al usuario.
-          mov esi, 0                               ; Indice para referenciar las variables de los cálculos (coordenadas del centro y radio de las circunferencias).
+          mov esi, 0                               ; Indice para referenciar las variables de los cÃ¡lculos (coordenadas del centro y radio de las circunferencias).
 
-          push esi                                 ; Se guarda esi debido a que en el posterior loop será modificado.
+          push esi                                 ; Se guarda esi debido a que en el posterior loop serÃ¡ modificado.
 
           mov edx, OFFSET MSGX1                    ; Se mueve a edx el OFFSET del primer mensaje para utilizar WriteString.
 
@@ -216,7 +143,7 @@ main PROC
 
           faddp	                                ; Se suman los dos radios
 
-          fld rx_1	                                ; Se cargan las coordenadas de los centros en la fpu y luego se pasan a la función MainClassifier
+          fld rx_1	                                ; Se cargan las coordenadas de los centros en la fpu y luego se pasan a la funciÃ³n MainClassifier
           fld rx_2
           fld ry_1
           fld ry_2
@@ -231,7 +158,7 @@ main PROC
 
           call Crlf
 
-          mov edx, OFFSET rst                       ; Reinicia el programa si el usuario da la opción adecuada.
+          mov edx, OFFSET rst                       ; Reinicia el programa si el usuario da la opciÃ³n adecuada.
           call WriteString
           call ReadInt
           mov reset, eax
