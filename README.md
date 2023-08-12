@@ -14,4 +14,4 @@ Enter 2 centers and 2 radius, the program classifies the circunferences correspo
 
 The program also calculates the intersection points in the cases where they exist.
 
-NO LIABILITY TAKEN FOR WHAT THIS PROGRAM MIGHT BE USED FOR.
+NO LIABILITY TAKEN FOR WHAT THIS PROGRAM MIGHT BE USED FOR. JK WHAT COULD YOU POSSIBLY MESS UP?
